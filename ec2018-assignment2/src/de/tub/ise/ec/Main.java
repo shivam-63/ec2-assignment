@@ -66,16 +66,16 @@ public class Main {
 		if(config.getProperty("client").equals("true")) {
 			// HERMES TEST
 			int port = 8080;
-			String host = "18.185.126.39"; // masterNode
+			String host = "3.121.184.165"; // masterNode
 						
 			//Writing a new key value pair
-			for(int i=1;i<=50;i++) {
-			
+			for(int i=0;i<100;i++) {
+
 			CrudRequest request = new CrudRequest();
-			request.setKey(i+"");
+			request.setKey("valueIs");
 			request.setValue("hello "+i);
 			request.setRequestType("CREATE");
-			if(config.getProperty("isSynchronous").equals("true")) {
+			if(config.getProperty("isAsynchronous").equals("true")) {
 				request.setAsync(true);
 			}
 			else{
@@ -89,6 +89,7 @@ public class Main {
 			// Client: send messages
 			Sender sender = new Sender(host, port);
 			Long start_time = System.currentTimeMillis();
+
 			Response res = sender.sendMessage(req2, 5000);
 			Long elapse = System.currentTimeMillis() - start_time;
 			
@@ -103,6 +104,7 @@ public class Main {
 				pw.append("\n");
 				pw.flush();
 		        pw.close();
+
 			} catch (IOException e) {
 				// TODO Auto-generated catch block`2
 				e.printStackTrace();
@@ -110,6 +112,12 @@ public class Main {
 			
 			System.out.println("Elapse " + elapse);
 			System.out.println("Received: " + res.getResponseMessage());
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+
 			}
 //			 // Test kv store
 //			 KeyValueInterface store = new FileSystemKVStore("C:/Users/DELL PC/Desktop");
