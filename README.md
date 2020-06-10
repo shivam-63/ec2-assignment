@@ -1,4 +1,4 @@
-# ec2-assignment
+# Enterprise Computing -assignment
 
 ## 1. Distributed Key- value Store Implementation
 We have created distributed key value store consisting two replicas, one is master
